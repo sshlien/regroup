@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="robots" content="index,follow">
+  <title>Regrouper </title>
+  <link rel="stylesheet" href="" type="text/css">
+</head>
+<body>
+<h2>Regrouper</h2>
+
+<h3>Introduction</h3>
+<p>
+The program fixes the grouping of notes in an
+abc music notation file so that they align with the beats.
+This makes the music score easier to read. For example,
+a line of music
+<pre>
+[V:1] E G B e d e !uppermordent!c B ce3 |
+</pre>
+will be converted to
+<pre>
+[V:1]EGB ede !uppermordent!cBc e3 |
+</pre>
+<p>
+There are two instances of this program -- regroup.tcl and
+regroup_gui.tcl.
+<p>
+<b>regroup.tcl</b> runs without a user interface and is designed to
+run in a batch file. To run it from a command window you would
+enter:
+<pre>
+tclsh regroup.tcl my_input_file.abc &gt; my_output_file.abc.
+</pre> 
+where my_input_file.abc is the name of  your input abc file, and
+my_output_file.abc is the name of the output abc file with the
+notes regrouped. You may prefix either files with the name of
+the folder where they are contained or to be created. 
+<p>
+<b>regroup_gui.tcl</b> runs with a user interface. To start it,
+<pre>
+wish8.6 regroup_gui.tcl
+</pre>
+or alternatively just enter
+<pre>
+regroup_gui.tcl
+</pre>
+assuming that the file can be executed.
+<p>
+Once the user interface appears, click the input button and
+browse to the input abc file. A list of all tunes in that file
+should appear in the left frame. When you select one of the tunes,
+the contents of that tune should appear in the right frame.
+Click the regroup button, to regroup the notes in that selection.
+The contents of the right text frame should be updated with
+the notes regrouped. The contents of this text window can be
+saved to your designated output file using the save button.
+I do not recommend overwriting the input abc file unless
+you have a backup.
+
+
+
+<br>
+
+<h3>Requirements</h3>
+<p>
+The program requires the tcl/tk 8.6 interpreter in order to run.
+Tcl/tk is usually available with Posix (Linux) systems and can installed
+for free on Windows operating systems from
+<a href="https://www.activestate.com/products/tcl/downloads/">https://www.activestate.com/products/tcl/downloads/</a>.
+There are no other dependencies at this time.
+
+
+<h3>Test File</h3>
+I have include wtc1p09.abc in this repository.
+<br>
+
+<h3>Method</h3>
+The program recognizes the following meters: 4/4, 2/4, 3/4, 3/8,
+6/8, 2/2/ 6/4, 9/8, 3/2, 12/8, 12/16, 6/16, 4/2, and 24/16, and
+selects the appropriate beat size. All white spaces are removed
+from a text line in the body. The program scans through the
+text line, adding up the note (rest) lengths, and inserts a space
+at the end of each beat.
+
+</p>
+<hr width="75%">
+<center>This page was created on February 17 2021.
+</center>
+</body>
+</html>
